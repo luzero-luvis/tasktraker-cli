@@ -2,6 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"time"
+
+	"tesktracker-cli/internal"
 
 	"github.com/spf13/cobra"
 )
@@ -16,7 +20,28 @@ tasktraker-cli add "First write function for add"`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			fmt.Printf("%s\n", "please give me a description of the task")
+			os.Exit(1)
 		}
+
+		tasks, err := internal.LoadTask()
+		if err != nil {
+			fmt.Printf("error loading task %v\n", err)
+			os.Exit(1)
+		}
+
+		newTask := internal.Task{
+			ID:          len(tasks) + 1,
+			Description: args[0],
+			Completed:   false,
+			CompletedAt: time.Now(),
+		}
+		tasks = append(tasks, newTask)
+
+		if err := internal.SaveTask(tasks); err != nil {
+			fmt.Printf("error saving task %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("new task save successfully %v\n", newTask.ID)
 	},
 }
 
