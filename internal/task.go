@@ -5,8 +5,8 @@ import (
 )
 
 type Task struct {
-	ID           int       `json:"id"`
-	Description  string    `json:"description"`
-	Completed    bool      `json:"completed"`
-	Completed_at time.Time `json:"Completed_at"`
+	ID          int       `json:"id"`
+	Description string    `json:"description"`
+	Completed   bool      `json:"completed"`
+	CompletedAt time.Time `json:"CompletedAt"`
 }
