@@ -14,7 +14,9 @@ and usage of using your command. For example:
 
 tasktraker-cli add "First write function for add"`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("add called")
+		if len(args) == 0 {
+			fmt.Printf("%s\n", "please give me a description of the task")
+		}
 	},
 }
 
