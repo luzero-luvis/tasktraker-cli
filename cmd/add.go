@@ -29,6 +29,13 @@ tasktraker-cli add "First write function for add"`,
 			os.Exit(1)
 		}
 
+		for _, tasks := range tasks {
+			if tasks.Description == args[0] {
+				fmt.Printf("task already exists at %d\n", tasks.ID)
+				os.Exit(1)
+			}
+		}
+
 		newTask := internal.Task{
 			ID:          len(tasks) + 1,
 			Description: args[0],
