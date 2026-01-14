@@ -38,8 +38,9 @@ tasktracker-cli list`,
 				if tasks.ID == id {
 					fmt.Printf("%d\t", tasks.ID)
 					fmt.Printf("%s\t", tasks.Description)
-					fmt.Printf("%t\t", tasks.Completed)
-					fmt.Printf("%v\n", tasks.CompletedAt)
+					fmt.Printf("%v\t", tasks.Status)
+					fmt.Printf("%v\n", tasks.CreatedAt)
+					fmt.Printf("%v\n", tasks.UpdatedAt)
 					return
 				}
 			}
@@ -47,8 +48,9 @@ tasktracker-cli list`,
 		for _, tasks := range tasks {
 			fmt.Printf("%d\t", tasks.ID)
 			fmt.Printf("%s\t", tasks.Description)
-			fmt.Printf("%t\t", tasks.Completed)
-			fmt.Printf("%v\n", tasks.CompletedAt)
+			fmt.Printf("%v\t", tasks.Status)
+			fmt.Printf("%v\n", tasks.CreatedAt)
+			fmt.Printf("%v\n", tasks.UpdatedAt)
 		}
 	},
 }

@@ -39,8 +39,9 @@ tasktraker-cli add "First write function for add"`,
 		newTask := internal.Task{
 			ID:          len(tasks) + 1,
 			Description: args[0],
-			Completed:   false,
-			CompletedAt: time.Now(),
+			Status:      "todo",
+			CreatedAt:   time.Now(),
+			UpdatedAt:   time.Now(),
 		}
 		tasks = append(tasks, newTask)
 
