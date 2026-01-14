@@ -28,6 +28,7 @@ tasktracker-cli list`,
 			fmt.Println("list is empty")
 			os.Exit(1)
 		}
+
 		if len(args) > 0 {
 			id, err := strconv.Atoi(args[0])
 			if err != nil {
@@ -37,20 +38,21 @@ tasktracker-cli list`,
 			for _, tasks := range tasks {
 				if tasks.ID == id {
 					fmt.Printf("%d\t", tasks.ID)
-					fmt.Printf("%s\t", tasks.Description)
+					fmt.Printf("%s\t\t", tasks.Description)
 					fmt.Printf("%v\t", tasks.Status)
-					fmt.Printf("%v\n", tasks.CreatedAt)
-					fmt.Printf("%v\n", tasks.UpdatedAt)
+					fmt.Printf("%v\t", tasks.CreatedAt)
+					fmt.Printf("%v\t\n", tasks.UpdatedAt)
 					return
 				}
 			}
-		}
-		for _, tasks := range tasks {
-			fmt.Printf("%d\t", tasks.ID)
-			fmt.Printf("%s\t", tasks.Description)
-			fmt.Printf("%v\t", tasks.Status)
-			fmt.Printf("%v\n", tasks.CreatedAt)
-			fmt.Printf("%v\n", tasks.UpdatedAt)
+		} else {
+			for _, tasks := range tasks {
+				fmt.Printf("%d\t", tasks.ID)
+				fmt.Printf("%s\t\t", tasks.Description)
+				fmt.Printf("%v\t", tasks.Status)
+				fmt.Printf("%v\t", tasks.CreatedAt)
+				fmt.Printf("%v\t\n", tasks.UpdatedAt)
+			}
 		}
 	},
 }
