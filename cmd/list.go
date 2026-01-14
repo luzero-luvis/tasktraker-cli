@@ -16,7 +16,10 @@ var listCmd = &cobra.Command{
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
-tasktracker-cli list`,
+./tasktracker-cli list
+./tasktracker-cli list todo
+./tasktracker-cli list in-progess
+./tasktracker-cli list completed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		tasks, err := internal.LoadTask()
 		if err != nil {
