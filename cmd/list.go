@@ -28,7 +28,7 @@ and usage of using your command. For example:
 		}
 
 		if len(tasks) == 0 {
-			fmt.Println("list is empty")
+			fmt.Println("no task to do")
 			os.Exit(1)
 		}
 		fmt.Println("ID | Description | Status       | CreatedAt")

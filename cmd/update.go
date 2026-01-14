@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"time"
 
@@ -19,7 +20,8 @@ and usage of using your command. For example:
 ./tasktraker-cli update <task-id> <new description>`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 2 {
-			fmt.Printf("%s", "please give me an id and new description")
+			fmt.Printf("%s", "please give both id and new description")
+			os.Exit(1)
 		}
 
 		id, err := strconv.Atoi(args[0])
