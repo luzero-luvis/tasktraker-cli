@@ -38,7 +38,7 @@ and usage of using your command. For example:
 		for i, task := range tasks {
 			if task.ID == id && args[0] != "in-progress" {
 				found = true
-				tasks[i].Status = "in-progess"
+				tasks[i].Status = "in-progress"
 				tasks[i].UpdatedAt = time.Now()
 				fmt.Printf("(ID :%v) marked in in-progress\n", id)
 			} else {

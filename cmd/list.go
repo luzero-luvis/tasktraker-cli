@@ -45,7 +45,7 @@ and usage of using your command. For example:
 						fmt.Printf("ID(%d) %s %s (%s) (%s)",
 							task.ID,
 							task.Description,
-							task.Status,
+							ColorStatus(task.Status),
 							task.CreatedAt.Format("2006-01-15 15:04:05"),
 							task.UpdatedAt.Format("2006-01-15 15:04:05"),
 						)
@@ -60,7 +60,7 @@ and usage of using your command. For example:
 					fmt.Printf("ID(%d) %s %s (%s) (%s)",
 						task.ID,
 						task.Description,
-						task.Status,
+						ColorStatus(task.Status),
 						task.CreatedAt.Format("2006-01-15 15:04:05"),
 						task.UpdatedAt.Format("2006-01-15 15:04:05"),
 					)
@@ -78,11 +78,29 @@ func printTask(task internal.Task) {
 	fmt.Printf("ID(%d) %s %s (%s) (%s)",
 		task.ID,
 		task.Description,
-		task.Status,
+		ColorStatus(task.Status),
 		task.CreatedAt.Format("2006-01-15 15:04:05"),
 		task.UpdatedAt.Format("2006-01-15 15:04:05"))
 	fmt.Println()
 	fmt.Println(yellow("──────────────────────────────────────────────────────"))
+}
+
+func ColorStatus(status string) string {
+	red := color.New(color.FgHiRed).SprintfFunc()
+	yellow := color.New(color.FgHiYellow).SprintfFunc()
+	blue := color.New(color.FgHiBlue).SprintfFunc()
+
+	switch status {
+	case "todo":
+		return red("todo")
+	case "in-progress":
+		return yellow("in-progress")
+	case "done":
+		return blue("done")
+	default:
+		fmt.Printf("%s", "status not found")
+	}
+	return status
 }
 
 func init() {

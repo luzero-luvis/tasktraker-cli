@@ -36,8 +36,7 @@ var deleteCmd = &cobra.Command{
 			if tasks.ID == id {
 				found = true
 			} else {
-				UpdatedTask := append(UpdatedTask, tasks)
-				_ = UpdatedTask
+				UpdatedTask = append(UpdatedTask, tasks)
 			}
 		}
 
