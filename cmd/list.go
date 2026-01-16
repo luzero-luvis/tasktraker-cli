@@ -42,30 +42,20 @@ and usage of using your command. For example:
 			if err == nil {
 				for _, task := range tasks {
 					if task.ID == id {
-						fmt.Printf("ID(%d) %s %s (%s) (%s)",
-							task.ID,
-							task.Description,
-							ColorStatus(task.Status),
-							task.CreatedAt.Format("2006-01-15 15:04:05"),
-							task.UpdatedAt.Format("2006-01-15 15:04:05"),
-						)
+						printTask(task)
+						return
 					}
 				}
-				return
+				fmt.Printf("%s", "searching id not is found\n")
 			}
 
 			filterStatus := args[0]
 			for _, task := range tasks {
-				if filterStatus == task.Status {
-					fmt.Printf("ID(%d) %s %s (%s) (%s)",
-						task.ID,
-						task.Description,
-						ColorStatus(task.Status),
-						task.CreatedAt.Format("2006-01-15 15:04:05"),
-						task.UpdatedAt.Format("2006-01-15 15:04:05"),
-					)
+				if task.Status == filterStatus {
+					printTask(task)
 				}
 			}
+			return
 		}
 		for _, task := range tasks {
 			printTask(task)

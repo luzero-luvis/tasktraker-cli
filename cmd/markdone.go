@@ -39,6 +39,7 @@ and usage of using your command. For example:
 				found = true
 				tasks[i].Status = "done"
 				tasks[i].UpdatedAt = time.Now()
+				fmt.Printf("(ID:%d) is marked as done\n", id)
 			}
 		}
 
