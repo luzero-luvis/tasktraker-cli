@@ -7,6 +7,7 @@ import (
 
 	"tesktracker-cli/internal"
 
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -31,50 +32,57 @@ and usage of using your command. For example:
 			fmt.Println("no task to do")
 			os.Exit(1)
 		}
-		fmt.Println("ID | Description | Status       | CreatedAt")
-		fmt.Println("---+-------------+--------------+---------------------------")
+
+		white := color.New(color.FgWhite).SprintFunc()
+		fmt.Println(white("TASK"))
+
 		if len(args) > 0 {
-			arg := args[0]
 			id, err := strconv.Atoi(args[0])
-			if err != nil {
-				if arg != "todo" && arg != "done" && arg != "in-progess" {
-					fmt.Printf("%s", "please provide valide id or id not exists")
+			if err == nil {
+				for _, task := range tasks {
+					if task.ID == id {
+						fmt.Printf("ID(%d) %s %s (%s) (%s)",
+							task.ID,
+							task.Description,
+							task.Status,
+							task.CreatedAt,
+							task.UpdatedAt.Format("2006-01-15 15:04:05\n"),
+						)
+					}
+				}
+				return
+			}
+
+			filterStatus := args[0]
+			for _, task := range tasks {
+				if filterStatus == task.Status {
+					fmt.Printf("ID(%d) %s %s (%s) (%s)",
+						task.ID,
+						task.Description,
+						task.Status,
+						task.CreatedAt,
+						task.UpdatedAt.Format("2006-01-15 15:04:05"),
+					)
 				}
 			}
-
-			for _, tasks := range tasks {
-				if tasks.ID == id {
-					fmt.Printf("%d  | %s  | %v  | %v  | %v\n",
-						tasks.ID,
-						tasks.Description,
-						tasks.Status,
-						tasks.CreatedAt,
-						tasks.UpdatedAt)
-					return
-				}
-			}
-		} else {
-			for _, tasks := range tasks {
-				fmt.Printf("%d  | %s  | %v  | %v  | %v\n",
-					tasks.ID,
-					tasks.Description,
-					tasks.Status,
-					tasks.CreatedAt,
-					tasks.UpdatedAt)
-			}
 		}
-
-		if len(args) == 0 {
-			return
-		}
-
-		filterSatus := args[0]
-		for _, tasks := range tasks {
-			if tasks.Status == filterSatus {
-				fmt.Printf("%d | %s | %v | %v | %v |\n", tasks.ID, tasks.Description, tasks.Status, tasks.CreatedAt, tasks.UpdatedAt)
-			}
+		for _, task := range tasks {
+			printTask(task)
 		}
 	},
+}
+
+func printTask(task internal.Task) {
+	yellow := color.New(color.FgYellow).SprintfFunc()
+	fmt.Printf("ID(%d) %s %s (%s) (%s)",
+		task.ID,
+		task.Description,
+		task.Status,
+		task.CreatedAt,
+		task.UpdatedAt.Format("2006-01-15 15:04:05"),
+	)
+	fmt.Println()
+	fmt.Println(yellow("______________________________________________________________________________________"))
 }
 
 func init() {
