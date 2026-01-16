@@ -35,6 +35,7 @@ and usage of using your command. For example:
 
 		white := color.New(color.FgWhite).SprintFunc()
 		fmt.Println(white("TASK"))
+		fmt.Println("──────────────────────────────────────────────────────")
 
 		if len(args) > 0 {
 			id, err := strconv.Atoi(args[0])
@@ -45,8 +46,8 @@ and usage of using your command. For example:
 							task.ID,
 							task.Description,
 							task.Status,
-							task.CreatedAt,
-							task.UpdatedAt.Format("2006-01-15 15:04:05\n"),
+							task.CreatedAt.Format("2006-01-15 15:04:05"),
+							task.UpdatedAt.Format("2006-01-15 15:04:05"),
 						)
 					}
 				}
@@ -60,7 +61,7 @@ and usage of using your command. For example:
 						task.ID,
 						task.Description,
 						task.Status,
-						task.CreatedAt,
+						task.CreatedAt.Format("2006-01-15 15:04:05"),
 						task.UpdatedAt.Format("2006-01-15 15:04:05"),
 					)
 				}
@@ -78,11 +79,10 @@ func printTask(task internal.Task) {
 		task.ID,
 		task.Description,
 		task.Status,
-		task.CreatedAt,
-		task.UpdatedAt.Format("2006-01-15 15:04:05"),
-	)
+		task.CreatedAt.Format("2006-01-15 15:04:05"),
+		task.UpdatedAt.Format("2006-01-15 15:04:05"))
 	fmt.Println()
-	fmt.Println(yellow("______________________________________________________________________________________"))
+	fmt.Println(yellow("──────────────────────────────────────────────────────"))
 }
 
 func init() {
