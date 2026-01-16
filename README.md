@@ -1,3 +1,3 @@
 # tasktraker-cli
 
-https://github.com/luzero-luvis/tasktraker-cli
+https://roadmap.sh/projects/task-tracker
